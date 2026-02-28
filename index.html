@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SciToons — Learn with Fun!</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
-    --sky: #006494;
+    --sky: #00C8FF;
     --sun: #FFD93D;
     --grass: #4CAF50;
     --purple: #9B59B6;
@@ -31,1198 +31,1233 @@
   /* ===== ANIMATED SKY BACKGROUND ===== */
   .sky-bg {
     position: fixed;
-    inset: 0;
-    background: linear-gradient(180deg, #006494 0%, #2A6F9A 60%, #143E57 100%);
-    z-index: -2;
-  }
-
-  .stars {
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
-  }
-
-  .star {
-    position: absolute;
-    background: #fff;
-    border-radius: 50%;
-    animation: twinkle 2s infinite alternate;
-  }
-
-  @keyframes twinkle {
-    from { opacity: 0.2; transform: scale(0.8); }
-    to { opacity: 1; transform: scale(1.2); }
-  }
-
-  /* ===== FLOATING CLOUDS ===== */
-  .clouds {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    height: 200px;
-    z-index: 0;
-    pointer-events: none;
-  }
-
-  .cloud {
-    position: absolute;
-    background: var(--cloud);
-    border-radius: 50px;
-    filter: blur(2px);
-    animation: floatCloud linear infinite;
-  }
-
-  .cloud::before, .cloud::after {
-    content: '';
-    position: absolute;
-    background: var(--cloud);
-    border-radius: 50%;
-  }
-
-  .cloud::before { width: 60%; height: 120%; top: -40%; left: 20%; }
-  .cloud::after { width: 40%; height: 100%; top: -30%; left: 50%; }
-
-  @keyframes floatCloud {
-    from { transform: translateX(-200px); }
-    to { transform: translateX(110vw); }
-  }
-
-  /* ===== HEADER / LOGO ===== */
-  header {
-    position: relative;
-    z-index: 10;
-    text-align: center;
-    padding: 24px 20px 10px;
-  }
-
-  .logo-wrap {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    background: rgba(255,255,255,0.92);
-    border-radius: 48px;
-    padding: 10px 26px;
-    box-shadow: 0 6px 22px rgba(20,30,40,0.12);
-    animation: logoBounce 3s ease-in-out infinite;
-  }
-
-  @keyframes logoBounce {
-    0%, 100% { transform: translateY(0) rotate(-1deg); }
-    50% { transform: translateY(-8px) rotate(1deg); }
-  }
-
-  .logo-emoji { font-size: 2.5rem; animation: spin 4s linear infinite; }
-  @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-
-  .logo-text {
-    font-family: 'Playfair Display', serif;
-    font-weight: 700;
-    font-size: 2.4rem;
-    color: var(--dark);
-    letter-spacing: 0.5px;
-  }
-
-  .tagline {
-    font-size: 1rem;
-    color: white;
-    font-weight: 800;
-    margin-top: 8px;
-    text-shadow: 2px 2px 0 rgba(0,0,0,0.2);
-    letter-spacing: 1px;
-    animation: taglinePop 1s ease-out 0.5s both;
-  }
-
-  @keyframes taglinePop {
-    from { opacity: 0; transform: scale(0.5); }
-    to { opacity: 1; transform: scale(1); }
-  }
-
-  /* ===== NAV TABS ===== */
-  nav {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    padding: 16px 20px;
-    flex-wrap: wrap;
-    position: relative;
-    z-index: 10;
-  }
-
-  .nav-btn {
-    font-family: 'Fredoka One', cursive;
-    font-size: 1rem;
-    padding: 8px 18px;
-    border: none;
-    border-radius: 28px;
-    cursor: pointer;
-    transition: transform 0.18s, box-shadow 0.18s, background 0.2s;
-    box-shadow: 0 6px 18px rgba(20,30,40,0.06);
-    letter-spacing: 0.4px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .nav-btn:hover { transform: translateY(-4px) scale(1.05); }
-  .nav-btn:active { transform: translateY(2px); box-shadow: 0 2px 0 rgba(0,0,0,0.2); }
-
-  .nav-btn::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: rgba(255,255,255,0.3);
-    transform: translateX(-100%);
-    transition: 0.3s;
-    border-radius: 40px;
-  }
-  .nav-btn:hover::after { transform: translateX(0); }
-
-  .btn-home { background: var(--sun); color: var(--dark); }
-  .btn-shows { background: linear-gradient(90deg,#EFA6C8,#C78BCF); color: white; }
-  .btn-science { background: linear-gradient(90deg,#8E6FB6,#6DA7C8); color: white; }
-  .btn-games { background: linear-gradient(90deg,#F6A45D,#E07A5F); color: white; }
-  .btn-profile { background: linear-gradient(90deg,#7EC98F,#4CAF50); color: white; }
-
-  /* ===== HERO SECTION ===== */
-  .hero {
-    position: relative;
-    z-index: 5;
-    text-align: center;
-    padding: 20px 20px 0;
-  }
-
-  .hero-banner {
-    background: linear-gradient(135deg, #0f2a3a 0%, #183d4e 50%, #2a6f86 100%);
-    border-radius: 30px;
-    padding: 40px 30px;
-    max-width: 900px;
-    margin: 0 auto;
-    box-shadow: 0 12px 40px rgba(10,20,30,0.18);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero-banner::before {
-    content: '⭐✨🌟💫⭐✨';
-    position: absolute;
-    top: -10px;
-    left: 0; right: 0;
-    font-size: 2rem;
-    letter-spacing: 20px;
-    opacity: 0.4;
-    animation: starScroll 6s linear infinite;
-  }
-
-  @keyframes starScroll {
-    from { transform: translateX(0); }
-    to { transform: translateX(-200px); }
-  }
-
-  .hero-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2.2rem, 6vw, 4rem);
-    color: #FFFDF6;
-    text-shadow: 2px 2px 0 rgba(0,0,0,0.18);
-    line-height: 1.1;
-    margin-bottom: 16px;
-    animation: heroSlide 0.8s ease-out both;
-  }
-
-  @keyframes heroSlide {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .hero-sub {
-    color: rgba(255,255,255,0.95);
-    font-size: 1.2rem;
-    font-weight: 700;
-    margin-bottom: 28px;
-    text-shadow: 1px 1px 0 rgba(0,0,0,0.2);
-  }
-
-  .play-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    background: rgba(255,217,80,0.95);
-    color: var(--dark);
-    font-family: 'Fredoka One', cursive;
-    font-size: 1.6rem;
-    padding: 16px 40px;
-    border-radius: 60px;
-    border: none;
-    cursor: pointer;
-    box-shadow: 0 8px 20px rgba(10,20,30,0.12);
-    transition: transform 0.2s, box-shadow 0.2s;
-    animation: playPulse 2s ease-in-out infinite;
-  }
-
-  @keyframes playPulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-  }
-
-  .play-btn:hover { transform: translateY(-4px) scale(1.05); box-shadow: 0 12px 0 #E6B800, 0 16px 40px rgba(0,0,0,0.25); }
-  .play-btn:active { transform: translateY(2px); box-shadow: 0 4px 0 #E6B800; }
-
-  .play-icon { font-size: 2rem; animation: playBounce 1s ease-in-out infinite alternate; }
-  @keyframes playBounce { from { transform: scale(1); } to { transform: scale(1.3); } }
-
-  /* ===== TODAY'S EPISODE ===== */
-  .today-section {
-    position: relative;
-    z-index: 5;
-    max-width: 900px;
-    margin: 30px auto;
-    padding: 0 20px;
-  }
-
-  .section-title {
-    font-family: 'Fredoka One', cursive;
-    font-size: 2rem;
-    color: white;
-    text-shadow: 3px 3px 0 rgba(0,0,0,0.2);
-    text-align: center;
-    margin-bottom: 20px;
-  }
-
-  .episode-card {
-    background: white;
-    border-radius: 24px;
-    overflow: hidden;
-    box-shadow: 0 12px 40px rgba(0,0,0,0.15), 0 0 0 4px var(--sun);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0;
-    animation: cardFloat 0.8s ease-out 0.3s both;
-  }
-
-  @keyframes cardFloat {
-    from { opacity: 0; transform: translateY(40px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  @media (max-width: 600px) {
-    .episode-card { grid-template-columns: 1fr; }
-  }
-
-  .episode-thumb {
-    position: relative;
-    background: linear-gradient(135deg, #1a1a2e, #16213e);
-    min-height: 220px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-  }
-
-  .thumb-scene {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    min-height: 220px;
-  }
-
-  /* Mini cartoon scene */
-  .scene-sky {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, #0f0f3d 0%, #1a1a6e 100%);
-  }
-
-  .scene-planet {
-    position: absolute;
-    top: 20px;
-    right: 30px;
-    width: 60px;
-    height: 60px;
-    background: radial-gradient(circle at 35% 35%, #FF8C42, #FF4757);
-    border-radius: 50%;
-    box-shadow: 0 0 20px rgba(255,140,66,0.6);
-    animation: planetFloat 4s ease-in-out infinite;
-  }
-
-  .scene-planet::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: -20%;
-    width: 140%;
-    height: 14px;
-    background: rgba(255,200,100,0.4);
-    border-radius: 50%;
-    transform: translateY(-50%) rotate(-20deg);
-  }
-
-  @keyframes planetFloat {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-10px) rotate(5deg); }
-  }
-
-  .scene-rocket {
-    position: absolute;
-    bottom: 30px;
-    left: 30px;
-    font-size: 3.5rem;
-    animation: rocketFly 3s ease-in-out infinite;
-    filter: drop-shadow(0 0 10px rgba(255,200,50,0.8));
-  }
-
-  @keyframes rocketFly {
-    0%, 100% { transform: translateX(0) translateY(0) rotate(-15deg); }
-    50% { transform: translateX(15px) translateY(-15px) rotate(-10deg); }
-  }
-
-  .scene-stars-mini {
-    position: absolute;
-    inset: 0;
-  }
-
-  .scene-star {
-    position: absolute;
-    color: white;
-    font-size: 0.7rem;
-    animation: twinkle 1.5s infinite alternate;
-  }
-
-  .play-overlay {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(0,0,0,0.3);
-    opacity: 0;
-    transition: opacity 0.3s;
-    cursor: pointer;
-  }
-
-  .episode-thumb:hover .play-overlay { opacity: 1; }
-
-  .play-circle {
-    width: 70px;
-    height: 70px;
-    background: rgba(255,255,255,0.95);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2rem;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-    transition: transform 0.2s;
-  }
-
-  .play-overlay:hover .play-circle { transform: scale(1.15); }
-
-  .episode-info {
-    padding: 24px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  .ep-badge {
-    display: inline-block;
-    background: var(--purple);
-    color: white;
-    font-family: 'Fredoka One', cursive;
-    font-size: 0.85rem;
-    padding: 4px 14px;
-    border-radius: 20px;
-    margin-bottom: 10px;
-    width: fit-content;
-    animation: badgePop 0.5s ease-out 0.8s both;
-  }
-
-  @keyframes badgePop {
-    from { transform: scale(0); }
-    to { transform: scale(1); }
-  }
-
-  .ep-title {
-    font-family: 'Fredoka One', cursive;
-    font-size: 1.6rem;
-    color: var(--dark);
-    line-height: 1.2;
-    margin-bottom: 8px;
-  }
-
-  .ep-desc {
-    color: #666;
-    font-size: 0.95rem;
-    line-height: 1.6;
-    font-weight: 600;
-    margin-bottom: 16px;
-  }
-
-  .ep-meta {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-    margin-bottom: 16px;
-  }
-
-  .ep-tag {
-    background: #F0F0FF;
-    color: var(--purple);
-    font-weight: 800;
-    font-size: 0.8rem;
-    padding: 4px 12px;
-    border-radius: 20px;
-  }
-
-  .ep-tag.time { background: #FFF4E0; color: var(--orange); }
-  .ep-tag.age { background: #E8FFE8; color: var(--grass); }
-
-  .watch-btn {
-    background: linear-gradient(135deg, var(--pink), var(--purple));
-    color: white;
-    font-family: 'Fredoka One', cursive;
-    font-size: 1.1rem;
-    padding: 12px 24px;
-    border-radius: 40px;
-    border: none;
-    cursor: pointer;
-    box-shadow: 0 5px 0 rgba(0,0,0,0.15);
-    transition: transform 0.2s, box-shadow 0.2s;
-    width: 100%;
-  }
-  .watch-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 0 rgba(0,0,0,0.15); }
-
-  /* ===== SHOW GRID ===== */
-  .shows-section {
-    position: relative;
-    z-index: 5;
-    max-width: 1100px;
-    margin: 30px auto;
-    padding: 0 20px;
-  }
-
-  .shows-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 20px;
-  }
-
-  .show-card {
-    background: white;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.12);
-    cursor: pointer;
-    transition: transform 0.3s, box-shadow 0.3s;
-    animation: cardPop 0.6s ease-out both;
-  }
-
-  .show-card:nth-child(1) { animation-delay: 0.1s; }
-  .show-card:nth-child(2) { animation-delay: 0.2s; }
-  .show-card:nth-child(3) { animation-delay: 0.3s; }
-  .show-card:nth-child(4) { animation-delay: 0.4s; }
-  .show-card:nth-child(5) { animation-delay: 0.5s; }
-  .show-card:nth-child(6) { animation-delay: 0.6s; }
-
-  @keyframes cardPop {
-    from { opacity: 0; transform: translateY(30px) scale(0.9); }
-    to { opacity: 1; transform: translateY(0) scale(1); }
-  }
-
-  .show-card:hover { transform: translateY(-8px) scale(1.03); box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
-
-  .show-thumb {
-    height: 130px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 4rem;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .show-thumb::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0; right: 0;
-    height: 30px;
-    background: linear-gradient(to top, white, transparent);
-  }
-
-  .show-info { padding: 14px; }
-
-  .show-name {
-    font-family: 'Fredoka One', cursive;
-    font-size: 1.1rem;
-    color: var(--dark);
-    margin-bottom: 4px;
-  }
-
-  .show-topic {
-    font-size: 0.8rem;
-    font-weight: 700;
-    color: #888;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-
-  .show-eps {
-    margin-top: 8px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 0.8rem;
-    font-weight: 800;
-    color: var(--purple);
-  }
-
-  /* ===== SCIENCE TOPICS BUBBLES ===== */
-  .topics-section {
-    position: relative;
-    z-index: 5;
-    max-width: 900px;
-    margin: 30px auto;
-    padding: 0 20px;
-  }
-
-  .topics-bubbles {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 14px;
-    justify-content: center;
-  }
-
-  .topic-bubble {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-    background: white;
-    border-radius: 20px;
-    padding: 16px 20px;
-    cursor: pointer;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-    transition: transform 0.3s, box-shadow 0.3s;
-    min-width: 100px;
-    animation: bubblePop 0.5s ease-out both;
-  }
-
-  .topic-bubble:hover {
-    transform: translateY(-6px) scale(1.08);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.18);
-  }
-
-  .bubble-icon { font-size: 2.2rem; }
-
-  .bubble-label {
-    font-family: 'Fredoka One', cursive;
-    font-size: 0.9rem;
-    color: var(--dark);
-    text-align: center;
-  }
-
-  /* ===== STREAK / PROGRESS ===== */
-  .progress-section {
-    position: relative;
-    z-index: 5;
-    max-width: 900px;
-    margin: 30px auto;
-    padding: 0 20px;
-  }
-
-  .progress-card {
-    background: white;
-    border-radius: 24px;
-    padding: 28px;
-    box-shadow: 0 10px 35px rgba(0,0,0,0.12);
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 20px;
-    text-align: center;
-  }
-
-  @media (max-width: 500px) {
-    .progress-card { grid-template-columns: 1fr; }
-  }
-
- .stat-item {}
-
-.stat-val {
-  font-family: 'Fredoka One', cursive;
-  font-size: 3rem;
-  line-height: 1;   /* you had this on the next line in the full file */
-}                   /* ✅ closing brace added */
-  .stat-label {
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: #888;
-    margin-top: 4px;
-  }
-
-  .stat-icon { font-size: 1.5rem; margin-bottom: 4px; }
-
-  .streak-days {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    margin-top: 20px;
-    flex-wrap: wrap;
-  }
-
-  .day-dot {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1rem;
-    font-weight: 800;
-    font-family: 'Fredoka One', cursive;
-    transition: transform 0.2s;
-  }
-
-  .day-dot:hover { transform: scale(1.2); }
-  .day-done { background: linear-gradient(135deg, var(--grass), #81C784); color: white; box-shadow: 0 4px 10px rgba(76,175,80,0.4); }
-  .day-today { background: linear-gradient(135deg, var(--sun), var(--orange)); color: white; box-shadow: 0 4px 10px rgba(255,217,61,0.5); animation: todayPulse 1.5s ease-in-out infinite; }
-  .day-future { background: #F0F0F0; color: #CCC; }
-
-  @keyframes todayPulse {
-    0%, 100% { box-shadow: 0 4px 10px rgba(255,217,61,0.5); }
-    50% { box-shadow: 0 4px 20px rgba(255,217,61,0.9); }
-  }
-
-  /* ===== CHARACTERS ===== */
-  .chars-section {
-    position: relative;
-    z-index: 5;
-    max-width: 900px;
-    margin: 30px auto;
-    padding: 0 20px;
-  }
-
-  .chars-row {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  .char-card {
-    background: white;
-    border-radius: 24px;
-    padding: 24px 20px;
-    text-align: center;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-    width: 160px;
-    cursor: pointer;
-    transition: transform 0.3s;
-  }
-
-  .char-card:hover { transform: translateY(-8px) rotate(2deg); }
-
-  .char-avatar {
-    font-size: 4rem;
-    display: block;
-    margin-bottom: 12px;
-    animation: charFloat 3s ease-in-out infinite;
-  }
-
-  .char-card:nth-child(2) .char-avatar { animation-delay: 0.5s; }
-  .char-card:nth-child(3) .char-avatar { animation-delay: 1s; }
-  .char-card:nth-child(4) .char-avatar { animation-delay: 1.5s; }
-
-  @keyframes charFloat {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-  }
-
-  .char-name {
-    font-family: 'Fredoka One', cursive;
-    font-size: 1.1rem;
-    color: var(--dark);
-    margin-bottom: 4px;
-  }
-
-  .char-role {
-    font-size: 0.78rem;
-    color: #888;
-    font-weight: 700;
-  }
-
-  /* ===== FOOTER GRASS ===== */
-  .grass-footer {
-    position: relative;
-    z-index: 5;
-    margin-top: 40px;
-    height: 100px;
-    background: var(--grass);
-    clip-path: ellipse(55% 60% at 50% 100%);
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    padding-bottom: 16px;
-  }
-
-  .footer-text {
-    font-family: 'Fredoka One', cursive;
-    color: rgba(255,255,255,0.8);
-    font-size: 0.9rem;
-    text-align: center;
-  }
-
-  /* ===== NOTIFICATION BANNER ===== */
-  .notif-bar {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    background: linear-gradient(90deg, var(--pink), var(--purple));
-    color: white;
-    font-family: 'Fredoka One', cursive;
-    font-size: 1rem;
-    text-align: center;
-    padding: 10px 20px;
-    z-index: 100;
-    transform: translateY(-100%);
-    animation: notifSlide 0.5s ease-out 2s both;
-  }
-
-  @keyframes notifSlide {
-    to { transform: translateY(0); }
-  }
-
-  /* ===== MODAL ===== */
-  .modal-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.7);
-    z-index: 200;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    backdrop-filter: blur(4px);
-  }
-
-  .modal-overlay.active { display: flex; }
-
-  .modal-box {
-    background: white;
-    border-radius: 30px;
-    padding: 40px;
-    max-width: 500px;
-    width: 90%;
-    text-align: center;
-    animation: modalPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-  }
-
-  @keyframes modalPop {
-    from { transform: scale(0.5) rotate(-5deg); opacity: 0; }
-    to { transform: scale(1) rotate(0deg); opacity: 1; }
-  }
-
-  .modal-emoji { font-size: 5rem; margin-bottom: 16px; display: block; animation: emojiWiggle 1s ease-in-out infinite; }
-
-  @keyframes emojiWiggle {
-    0%, 100% { transform: rotate(-5deg); }
-    50% { transform: rotate(5deg); }
-  }
-
-  .modal-title {
-    font-family: 'Fredoka One', cursive;
-    font-size: 2rem;
-    color: var(--dark);
-    margin-bottom: 10px;
-  }
-
-  .modal-text { color: #666; font-size: 1rem; font-weight: 600; margin-bottom: 24px; line-height: 1.6; }
-
-  .modal-close {
-    background: linear-gradient(135deg, var(--pink), var(--purple));
-    color: white;
-    font-family: 'Fredoka One', cursive;
-    font-size: 1.2rem;
-    padding: 14px 40px;
-    border-radius: 40px;
-    border: none;
-    cursor: pointer;
-    box-shadow: 0 5px 0 rgba(0,0,0,0.15);
-    transition: transform 0.2s;
-  }
-  .modal-close:hover { transform: translateY(-3px); }
-
-  /* ===== CONFETTI ===== */
-  .confetti-piece {
-    position: fixed;
-    width: 10px;
-    height: 10px;
-    top: -10px;
-    border-radius: 2px;
-    animation: confettiFall linear both;
-    pointer-events: none;
-    z-index: 999;
-  }
-
-  @keyframes confettiFall {
-    to { transform: translateY(110vh) rotate(720deg); opacity: 0; }
-  }
-
-  /* Section spacing */
-  section { position: relative; z-index: 5; }
-</style>
-</head>
-<body>
-
-<div class="sky-bg"></div>
-<div class="stars" id="stars"></div>
-<div class="clouds" id="clouds"></div>
-
-<!-- Notification bar -->
-<div class="notif-bar">🌟 New Episode Alert! "Why Does the Sky Turn Red at Sunset?" — Watch Today! 🎬</div>
-
-<!-- HEADER -->
-<header>
-  <div class="logo-wrap">
-    <span class="logo-emoji">🔭</span>
-    <span class="logo-text">SciToons!</span>
-    <span style="font-size:2rem;">🧪</span>
-  </div>
-  <p class="tagline">✨ Watch Cartoons • Learn Science • Have Fun! ✨</p>
-</header>
-
-<!-- NAV -->
-<nav>
-  <button class="nav-btn btn-home" onclick="showSection('home')">🏠 Home</button>
-  <button class="nav-btn btn-shows" onclick="showSection('shows')">📺 Shows</button>
-  <button class="nav-btn btn-science" onclick="showSection('science')">🔬 Science Topics</button>
-  <button class="nav-btn btn-games" onclick="showModal('game')">🎮 Fun Quiz!</button>
-  <button class="nav-btn btn-profile" onclick="showModal('profile')">⭐ My Badges</button>
-</nav>
-
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-banner">
-    <h1 class="hero-title">🚀 Science is SUPER COOL!<br>Let's Watch & Learn! 🌈</h1>
-    <p class="hero-sub">New episode every day • Just 15 minutes • 100% Awesome!</p>
-    <button class="play-btn" onclick="openVideo()">
-      <span class="play-icon">▶️</span>
-      Watch Today's Episode!
-    </button>
-  </div>
-</section>
-
-<!-- TODAY'S EPISODE -->
-<section class="today-section">
-  <h2 class="section-title">📺 Today's Episode</h2>
-  <div class="episode-card">
-    <div class="episode-thumb" onclick="openVideo()">
-      <div class="thumb-scene">
-        <div class="scene-sky"></div>
-        <div class="scene-stars-mini" id="mini-stars"></div>
-        <div class="scene-planet"></div>
-        <div class="scene-rocket">🚀</div>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SciToons — Learn with Fun!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --sky: #00C8FF;
+        --sun: #FFD93D;
+        --grass: #4CAF50;
+        --purple: #9B59B6;
+        --pink: #FF6B9D;
+        --orange: #FF8C42;
+        --red: #FF4757;
+        --white: #FFFDF0;
+        --dark: #2C2C54;
+        --cloud: #FFFFFFCC;
+      }
+
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+
+      body {
+        font-family: 'Nunito', sans-serif;
+        background: var(--sky);
+        overflow-x: hidden;
+        cursor: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'><text y='28' font-size='28'>🚀</text></svg>") 4 4, auto;
+      }
+
+      /* ===== ANIMATED SKY BACKGROUND ===== */
+      .sky-bg {
+        position: fixed;
+        inset: 0;
+        background: linear-gradient(180deg, #00C8FF 0%, #87CEEB 60%, #B5E4CA 100%);
+        z-index: -2;
+      }
+
+      .stars {
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+      }
+
+      .star {
+        position: absolute;
+        background: #fff;
+        border-radius: 50%;
+        animation: twinkle 2s infinite alternate;
+      }
+
+      @keyframes twinkle {
+        from { opacity: 0.2; transform: scale(0.8); }
+        to { opacity: 1; transform: scale(1.2); }
+      }
+
+      /* ===== FLOATING CLOUDS ===== */
+      .clouds {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        height: 200px;
+        z-index: 0;
+        pointer-events: none;
+      }
+
+      .cloud {
+        position: absolute;
+        background: var(--cloud);
+        border-radius: 50px;
+        filter: blur(2px);
+        animation: floatCloud linear infinite;
+      }
+
+      .cloud::before, .cloud::after {
+        content: '';
+        position: absolute;
+        background: var(--cloud);
+        border-radius: 50%;
+      }
+
+      .cloud::before { width: 60%; height: 120%; top: -40%; left: 20%; }
+      .cloud::after { width: 40%; height: 100%; top: -30%; left: 50%; }
+
+      @keyframes floatCloud {
+        from { transform: translateX(-200px); }
+        to { transform: translateX(110vw); }
+      }
+
+      /* ===== HEADER / LOGO ===== */
+      header {
+        position: relative;
+        z-index: 10;
+        text-align: center;
+        padding: 24px 20px 10px;
+      }
+
+      .logo-wrap {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        background: white;
+        border-radius: 60px;
+        padding: 10px 30px;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.15), 0 0 0 4px var(--sun);
+        animation: logoBounce 3s ease-in-out infinite;
+      }
+
+      @keyframes logoBounce {
+        0%, 100% { transform: translateY(0) rotate(-1deg); }
+        50% { transform: translateY(-8px) rotate(1deg); }
+      }
+
+      .logo-emoji { font-size: 2.5rem; animation: spin 4s linear infinite; }
+      @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+      .logo-text {
+        font-family: 'Fredoka One', cursive;
+        font-size: 2.8rem;
+        background: linear-gradient(135deg, #FF6B9D, #9B59B6, #00C8FF);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        letter-spacing: 1px;
+      }
+
+      .tagline {
+        font-size: 1rem;
+        color: white;
+        font-weight: 800;
+        margin-top: 8px;
+        text-shadow: 2px 2px 0 rgba(0,0,0,0.2);
+        letter-spacing: 1px;
+        animation: taglinePop 1s ease-out 0.5s both;
+      }
+
+      @keyframes taglinePop {
+        from { opacity: 0; transform: scale(0.5); }
+        to { opacity: 1; transform: scale(1); }
+      }
+
+      /* ===== NAV TABS ===== */
+      nav {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        padding: 16px 20px;
+        flex-wrap: wrap;
+        position: relative;
+        z-index: 10;
+      }
+
+      .nav-btn {
+        font-family: 'Fredoka One', cursive;
+        font-size: 1.1rem;
+        padding: 10px 22px;
+        border: none;
+        border-radius: 40px;
+        cursor: pointer;
+        transition: transform 0.2s, box-shadow 0.2s;
+        box-shadow: 0 5px 0 rgba(0,0,0,0.2);
+        letter-spacing: 0.5px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .nav-btn:hover { transform: translateY(-4px) scale(1.05); }
+      .nav-btn:active { transform: translateY(2px); box-shadow: 0 2px 0 rgba(0,0,0,0.2); }
+
+      .nav-btn::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: rgba(255,255,255,0.3);
+        transform: translateX(-100%);
+        transition: 0.3s;
+        border-radius: 40px;
+      }
+      .nav-btn:hover::after { transform: translateX(0); }
+
+      .btn-home { background: var(--sun); color: var(--dark); }
+      .btn-shows { background: var(--pink); color: white; }
+      .btn-science { background: var(--purple); color: white; }
+      .btn-games { background: var(--orange); color: white; }
+      .btn-profile { background: var(--grass); color: white; }
+
+      /* ===== HERO SECTION ===== */
+      .hero {
+        position: relative;
+        z-index: 5;
+        text-align: center;
+        padding: 20px 20px 0;
+      }
+
+      .hero-banner {
+        background: linear-gradient(135deg, #FF6B9D 0%, #9B59B6 50%, #00C8FF 100%);
+        border-radius: 30px;
+        padding: 40px 30px;
+        max-width: 900px;
+        margin: 0 auto;
+        box-shadow: 0 15px 50px rgba(0,0,0,0.2), 0 0 0 5px white;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-banner::before {
+        content: '⭐✨🌟💫⭐✨';
+        position: absolute;
+        top: -10px;
+        left: 0; right: 0;
+        font-size: 2rem;
+        letter-spacing: 20px;
+        opacity: 0.4;
+        animation: starScroll 6s linear infinite;
+      }
+
+      @keyframes starScroll {
+        from { transform: translateX(0); }
+        to { transform: translateX(-200px); }
+      }
+
+      .hero-title {
+        font-family: 'Fredoka One', cursive;
+        font-size: clamp(2.2rem, 6vw, 4rem);
+        color: white;
+        text-shadow: 4px 4px 0 rgba(0,0,0,0.2);
+        line-height: 1.1;
+        margin-bottom: 16px;
+        animation: heroSlide 0.8s ease-out both;
+      }
+
+      @keyframes heroSlide {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      .hero-sub {
+        color: rgba(255,255,255,0.95);
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin-bottom: 28px;
+        text-shadow: 1px 1px 0 rgba(0,0,0,0.2);
+      }
+
+      .play-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        background: var(--sun);
+        color: var(--dark);
+        font-family: 'Fredoka One', cursive;
+        font-size: 1.6rem;
+        padding: 16px 40px;
+        border-radius: 60px;
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 8px 0 #E6B800, 0 12px 30px rgba(0,0,0,0.2);
+        transition: transform 0.2s, box-shadow 0.2s;
+        animation: playPulse 2s ease-in-out infinite;
+      }
+
+      @keyframes playPulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+      }
+
+      .play-btn:hover { transform: translateY(-4px) scale(1.05); box-shadow: 0 12px 0 #E6B800, 0 16px 40px rgba(0,0,0,0.25); }
+      .play-btn:active { transform: translateY(2px); box-shadow: 0 4px 0 #E6B800; }
+
+      .play-icon { font-size: 2rem; animation: playBounce 1s ease-in-out infinite alternate; }
+      @keyframes playBounce { from { transform: scale(1); } to { transform: scale(1.3); } }
+
+      /* ===== TODAY'S EPISODE ===== */
+      .today-section {
+        position: relative;
+        z-index: 5;
+        max-width: 900px;
+        margin: 30px auto;
+        padding: 0 20px;
+      }
+
+      .section-title {
+        font-family: 'Fredoka One', cursive;
+        font-size: 2rem;
+        color: white;
+        text-shadow: 3px 3px 0 rgba(0,0,0,0.2);
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .episode-card {
+        background: white;
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: 0 12px 40px rgba(0,0,0,0.15), 0 0 0 4px var(--sun);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0;
+        animation: cardFloat 0.8s ease-out 0.3s both;
+      }
+
+      @keyframes cardFloat {
+        from { opacity: 0; transform: translateY(40px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      @media (max-width: 600px) {
+        .episode-card { grid-template-columns: 1fr; }
+      }
+
+      .episode-thumb {
+        position: relative;
+        background: linear-gradient(135deg, #1a1a2e, #16213e);
+        min-height: 220px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+
+      .thumb-scene {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        min-height: 220px;
+      }
+
+      /* Mini cartoon scene */
+      .scene-sky {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, #0f0f3d 0%, #1a1a6e 100%);
+      }
+
+      .scene-planet {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        width: 60px;
+        height: 60px;
+        background: radial-gradient(circle at 35% 35%, #FF8C42, #FF4757);
+        border-radius: 50%;
+        box-shadow: 0 0 20px rgba(255,140,66,0.6);
+        animation: planetFloat 4s ease-in-out infinite;
+      }
+
+      .scene-planet::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: -20%;
+        width: 140%;
+        height: 14px;
+        background: rgba(255,200,100,0.4);
+        border-radius: 50%;
+        transform: translateY(-50%) rotate(-20deg);
+      }
+
+      @keyframes planetFloat {
+        0%, 100% { transform: translateY(0) rotate(0deg); }
+        50% { transform: translateY(-10px) rotate(5deg); }
+      }
+
+      .scene-rocket {
+        position: absolute;
+        bottom: 30px;
+        left: 30px;
+        font-size: 3.5rem;
+        animation: rocketFly 3s ease-in-out infinite;
+        filter: drop-shadow(0 0 10px rgba(255,200,50,0.8));
+      }
+
+      @keyframes rocketFly {
+        0%, 100% { transform: translateX(0) translateY(0) rotate(-15deg); }
+        50% { transform: translateX(15px) translateY(-15px) rotate(-10deg); }
+      }
+
+      .scene-stars-mini {
+        position: absolute;
+        inset: 0;
+      }
+
+      .scene-star {
+        position: absolute;
+        color: white;
+        font-size: 0.7rem;
+        animation: twinkle 1.5s infinite alternate;
+      }
+
+      .play-overlay {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0,0,0,0.3);
+        opacity: 0;
+        transition: opacity 0.3s;
+        cursor: pointer;
+      }
+
+      .episode-thumb:hover .play-overlay { opacity: 1; }
+
+      .play-circle {
+        width: 70px;
+        height: 70px;
+        background: rgba(255,255,255,0.95);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        transition: transform 0.2s;
+      }
+
+      .play-overlay:hover .play-circle { transform: scale(1.15); }
+
+      .episode-info {
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .ep-badge {
+        display: inline-block;
+        background: var(--purple);
+        color: white;
+        font-family: 'Fredoka One', cursive;
+        font-size: 0.85rem;
+        padding: 4px 14px;
+        border-radius: 20px;
+        margin-bottom: 10px;
+        width: fit-content;
+        animation: badgePop 0.5s ease-out 0.8s both;
+      }
+
+      @keyframes badgePop {
+        from { transform: scale(0); }
+        to { transform: scale(1); }
+      }
+
+      .ep-title {
+        font-family: 'Fredoka One', cursive;
+        font-size: 1.6rem;
+        color: var(--dark);
+        line-height: 1.2;
+        margin-bottom: 8px;
+      }
+
+      .ep-desc {
+        color: #666;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        font-weight: 600;
+        margin-bottom: 16px;
+      }
+
+      .ep-meta {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-bottom: 16px;
+      }
+
+      .ep-tag {
+        background: #F0F0FF;
+        color: var(--purple);
+        font-weight: 800;
+        font-size: 0.8rem;
+        padding: 4px 12px;
+        border-radius: 20px;
+      }
+
+      .ep-tag.time { background: #FFF4E0; color: var(--orange); }
+      .ep-tag.age { background: #E8FFE8; color: var(--grass); }
+
+      .watch-btn {
+        background: linear-gradient(135deg, var(--pink), var(--purple));
+        color: white;
+        font-family: 'Fredoka One', cursive;
+        font-size: 1.1rem;
+        padding: 12px 24px;
+        border-radius: 40px;
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 5px 0 rgba(0,0,0,0.15);
+        transition: transform 0.2s, box-shadow 0.2s;
+        width: 100%;
+      }
+      .watch-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 0 rgba(0,0,0,0.15); }
+
+      /* ===== SHOW GRID ===== */
+      .shows-section {
+        position: relative;
+        z-index: 5;
+        max-width: 1100px;
+        margin: 30px auto;
+        padding: 0 20px;
+      }
+
+      .shows-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 20px;
+      }
+
+      .show-card {
+        background: white;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        cursor: pointer;
+        transition: transform 0.3s, box-shadow 0.3s;
+        animation: cardPop 0.6s ease-out both;
+      }
+
+      .show-card:nth-child(1) { animation-delay: 0.1s; }
+      .show-card:nth-child(2) { animation-delay: 0.2s; }
+      .show-card:nth-child(3) { animation-delay: 0.3s; }
+      .show-card:nth-child(4) { animation-delay: 0.4s; }
+      .show-card:nth-child(5) { animation-delay: 0.5s; }
+      .show-card:nth-child(6) { animation-delay: 0.6s; }
+
+      @keyframes cardPop {
+        from { opacity: 0; transform: translateY(30px) scale(0.9); }
+        to { opacity: 1; transform: translateY(0) scale(1); }
+      }
+
+      .show-card:hover { transform: translateY(-8px) scale(1.03); box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
+
+      .show-thumb {
+        height: 130px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 4rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .show-thumb::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0; right: 0;
+        height: 30px;
+        background: linear-gradient(to top, white, transparent);
+      }
+
+      .show-info { padding: 14px; }
+
+      .show-name {
+        font-family: 'Fredoka One', cursive;
+        font-size: 1.1rem;
+        color: var(--dark);
+        margin-bottom: 4px;
+      }
+
+      .show-topic {
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: #888;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .show-eps {
+        margin-top: 8px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 0.8rem;
+        font-weight: 800;
+        color: var(--purple);
+      }
+
+      /* ===== SCIENCE TOPICS BUBBLES ===== */
+      .topics-section {
+        position: relative;
+        z-index: 5;
+        max-width: 900px;
+        margin: 30px auto;
+        padding: 0 20px;
+      }
+
+      .topics-bubbles {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        justify-content: center;
+      }
+
+      .topic-bubble {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        background: white;
+        border-radius: 20px;
+        padding: 16px 20px;
+        cursor: pointer;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+        min-width: 100px;
+        animation: bubblePop 0.5s ease-out both;
+      }
+
+      .topic-bubble:hover {
+        transform: translateY(-6px) scale(1.08);
+        box-shadow: 0 15px 35px rgba(0,0,0,0.18);
+      }
+
+      .bubble-icon { font-size: 2.2rem; }
+
+      .bubble-label {
+        font-family: 'Fredoka One', cursive;
+        font-size: 0.9rem;
+        color: var(--dark);
+        text-align: center;
+      }
+
+      /* ===== STREAK / PROGRESS ===== */
+      .progress-section {
+        position: relative;
+        z-index: 5;
+        max-width: 900px;
+        margin: 30px auto;
+        padding: 0 20px;
+      }
+
+      .progress-card {
+        background: white;
+        border-radius: 24px;
+        padding: 28px;
+        box-shadow: 0 10px 35px rgba(0,0,0,0.12);
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 20px;
+        text-align: center;
+      }
+
+      @media (max-width: 500px) {
+        .progress-card { grid-template-columns: 1fr; }
+      }
+
+     .stat-item {}
+
+    .stat-val {
+      font-family: 'Fredoka One', cursive;
+      font-size: 3rem;
+      line-height: 1;   /* you had this on the next line in the full file */
+    }                   /* ✅ closing brace added */
+      .stat-label {
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: #888;
+        margin-top: 4px;
+      }
+
+      .stat-icon { font-size: 1.5rem; margin-bottom: 4px; }
+
+      .streak-days {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 20px;
+        flex-wrap: wrap;
+      }
+
+      .day-dot {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+        font-weight: 800;
+        font-family: 'Fredoka One', cursive;
+        transition: transform 0.2s;
+      }
+
+      .day-dot:hover { transform: scale(1.2); }
+      .day-done { background: linear-gradient(135deg, var(--grass), #81C784); color: white; box-shadow: 0 4px 10px rgba(76,175,80,0.4); }
+      .day-today { background: linear-gradient(135deg, var(--sun), var(--orange)); color: white; box-shadow: 0 4px 10px rgba(255,217,61,0.5); animation: todayPulse 1.5s ease-in-out infinite; }
+      .day-future { background: #F0F0F0; color: #CCC; }
+
+      @keyframes todayPulse {
+        0%, 100% { box-shadow: 0 4px 10px rgba(255,217,61,0.5); }
+        50% { box-shadow: 0 4px 20px rgba(255,217,61,0.9); }
+      }
+
+      /* ===== CHARACTERS ===== */
+      .chars-section {
+        position: relative;
+        z-index: 5;
+        max-width: 900px;
+        margin: 30px auto;
+        padding: 0 20px;
+      }
+
+      .chars-row {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .char-card {
+        background: white;
+        border-radius: 24px;
+        padding: 24px 20px;
+        text-align: center;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        width: 160px;
+        cursor: pointer;
+        transition: transform 0.3s;
+      }
+
+      .char-card:hover { transform: translateY(-8px) rotate(2deg); }
+
+      .char-avatar {
+        font-size: 4rem;
+        display: block;
+        margin-bottom: 12px;
+        animation: charFloat 3s ease-in-out infinite;
+      }
+
+      .char-card:nth-child(2) .char-avatar { animation-delay: 0.5s; }
+      .char-card:nth-child(3) .char-avatar { animation-delay: 1s; }
+      .char-card:nth-child(4) .char-avatar { animation-delay: 1.5s; }
+
+      @keyframes charFloat {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+      }
+
+      .char-name {
+        font-family: 'Fredoka One', cursive;
+        font-size: 1.1rem;
+        color: var(--dark);
+        margin-bottom: 4px;
+      }
+
+      .char-role {
+        font-size: 0.78rem;
+        color: #888;
+        font-weight: 700;
+      }
+
+      /* ===== FOOTER GRASS ===== */
+      .grass-footer {
+        position: relative;
+        z-index: 5;
+        margin-top: 40px;
+        height: 100px;
+        background: var(--grass);
+        clip-path: ellipse(55% 60% at 50% 100%);
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        padding-bottom: 16px;
+      }
+
+      .footer-text {
+        font-family: 'Fredoka One', cursive;
+        color: rgba(255,255,255,0.8);
+        font-size: 0.9rem;
+        text-align: center;
+      }
+
+      /* ===== NOTIFICATION BANNER ===== */
+      .notif-bar {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        background: linear-gradient(90deg, var(--pink), var(--purple));
+        color: white;
+        font-family: 'Fredoka One', cursive;
+        font-size: 1rem;
+        text-align: center;
+        padding: 10px 20px;
+        z-index: 100;
+        transform: translateY(-100%);
+        animation: notifSlide 0.5s ease-out 2s both;
+      }
+
+      @keyframes notifSlide {
+        to { transform: translateY(0); }
+      }
+
+      /* ===== MODAL ===== */
+      .modal-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.7);
+        z-index: 200;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        backdrop-filter: blur(4px);
+      }
+
+      .modal-overlay.active { display: flex; }
+
+      .modal-box {
+        background: white;
+        border-radius: 30px;
+        padding: 40px;
+        max-width: 500px;
+        width: 90%;
+        text-align: center;
+        animation: modalPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      }
+
+      @keyframes modalPop {
+        from { transform: scale(0.5) rotate(-5deg); opacity: 0; }
+        to { transform: scale(1) rotate(0deg); opacity: 1; }
+      }
+
+      .modal-emoji { font-size: 5rem; margin-bottom: 16px; display: block; animation: emojiWiggle 1s ease-in-out infinite; }
+
+      @keyframes emojiWiggle {
+        0%, 100% { transform: rotate(-5deg); }
+        50% { transform: rotate(5deg); }
+      }
+
+      .modal-title {
+        font-family: 'Fredoka One', cursive;
+        font-size: 2rem;
+        color: var(--dark);
+        margin-bottom: 10px;
+      }
+
+      .modal-text { color: #666; font-size: 1rem; font-weight: 600; margin-bottom: 24px; line-height: 1.6; }
+
+      .modal-close {
+        background: linear-gradient(135deg, var(--pink), var(--purple));
+        color: white;
+        font-family: 'Fredoka One', cursive;
+        font-size: 1.2rem;
+        padding: 14px 40px;
+        border-radius: 40px;
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 5px 0 rgba(0,0,0,0.15);
+        transition: transform 0.2s;
+      }
+      .modal-close:hover { transform: translateY(-3px); }
+
+      /* ===== CONFETTI ===== */
+      .confetti-piece {
+        position: fixed;
+        width: 10px;
+        height: 10px;
+        top: -10px;
+        border-radius: 2px;
+        animation: confettiFall linear both;
+        pointer-events: none;
+        z-index: 999;
+      }
+
+      @keyframes confettiFall {
+        to { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+      }
+
+      /* Section spacing */
+      section { position: relative; z-index: 5; }
+    </style>
+    </head>
+    <body>
+
+    <div class="sky-bg"></div>
+    <div class="stars" id="stars"></div>
+    <div class="clouds" id="clouds"></div>
+
+    <!-- Notification bar -->
+    <div class="notif-bar">🌟 New Episode Alert! "Why Does the Sky Turn Red at Sunset?" — Watch Today! 🎬</div>
+
+    <!-- HEADER -->
+    <header>
+      <div class="logo-wrap">
+        <span class="logo-emoji">🔭</span>
+        <span class="logo-text">SciToons!</span>
+        <span style="font-size:2rem;">🧪</span>
       </div>
-      <div class="play-overlay">
-        <div class="play-circle">▶️</div>
+      <p class="tagline">✨ Watch Cartoons • Learn Science • Have Fun! ✨</p>
+    </header>
+
+    <!-- NAV -->
+    <nav>
+      <button class="nav-btn btn-home" onclick="showSection('home')">🏠 Home</button>
+      <button class="nav-btn btn-shows" onclick="showSection('shows')">📺 Shows</button>
+      <button class="nav-btn btn-science" onclick="showSection('science')">🔬 Science Topics</button>
+      <button class="nav-btn btn-games" onclick="showModal('game')">🎮 Fun Quiz!</button>
+      <button class="nav-btn btn-profile" onclick="showModal('profile')">⭐ My Badges</button>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-banner">
+        <h1 class="hero-title">🚀 Science is SUPER COOL!<br>Let's Watch & Learn! 🌈</h1>
+        <p class="hero-sub">New episode every day • Just 15 minutes • 100% Awesome!</p>
+        <button class="play-btn" onclick="openVideo()">
+          <span class="play-icon">▶️</span>
+          Watch Today's Episode!
+        </button>
+      </div>
+    </section>
+
+    <!-- TODAY'S EPISODE -->
+    <section class="today-section">
+      <h2 class="section-title">📺 Today's Episode</h2>
+      <div class="episode-card">
+        <div class="episode-thumb" onclick="openVideo()">
+          <div class="thumb-scene">
+            <div class="scene-sky"></div>
+            <div class="scene-stars-mini" id="mini-stars"></div>
+            <div class="scene-planet"></div>
+            <div class="scene-rocket">🚀</div>
+          </div>
+          <div class="play-overlay">
+            <div class="play-circle">▶️</div>
+          </div>
+        </div>
+        <div class="episode-info">
+          <span class="ep-badge">🌟 NEW TODAY</span>
+          <h3 class="ep-title">Why Does Gravity Pull Everything Down?</h3>
+          <p class="ep-desc">Join Cosmo the Rocket Bot as he discovers why apples fall from trees and why we don't float away into space!</p>
+          <div class="ep-meta">
+            <span class="ep-tag">🪐 Space & Physics</span>
+            <span class="ep-tag time">⏱️ 17 mins</span>
+            <span class="ep-tag age">👦 Ages 6-9</span>
+          </div>
+          <button class="watch-btn" onclick="openVideo()">▶️ Watch Now — It's FREE!</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHARACTERS -->
+    <section class="chars-section">
+      <h2 class="section-title">👋 Meet Your Science Friends!</h2>
+      <div class="chars-row">
+        <div class="char-card" onclick="showModal('cosmo')">
+          <span class="char-avatar">🤖</span>
+          <div class="char-name">Cosmo</div>
+          <div class="char-role">Space Explorer Bot</div>
+        </div>
+        <div class="char-card" onclick="showModal('luna')">
+          <span class="char-avatar">🦊</span>
+          <div class="char-name">Luna</div>
+          <div class="char-role">Chemistry Wizard</div>
+        </div>
+        <div class="char-card" onclick="showModal('zap')">
+          <span class="char-avatar">⚡</span>
+          <div class="char-name">Zappy</div>
+          <div class="char-role">Electric Explorer</div>
+        </div>
+        <div class="char-card" onclick="showModal('nova')">
+          <span class="char-avatar">🌸</span>
+          <div class="char-name">Nova</div>
+          <div class="char-role">Nature Scientist</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SHOWS GRID -->
+    <section class="shows-section">
+      <h2 class="section-title">🎬 All Our Shows</h2>
+      <div class="shows-grid">
+        <div class="show-card" onclick="showModal('show')">
+          <div class="show-thumb" style="background:linear-gradient(135deg,#0f0f3d,#1a1a6e)">🚀🌌</div>
+          <div class="show-info">
+            <div class="show-name">Space Explorers</div>
+            <div class="show-topic">🪐 Astronomy</div>
+            <div class="show-eps">📺 12 Episodes</div>
+          </div>
+        </div>
+        <div class="show-card" onclick="showModal('show')">
+          <div class="show-thumb" style="background:linear-gradient(135deg,#1a472a,#2d6a4f)">🌿🔬</div>
+          <div class="show-info">
+            <div class="show-name">Tiny World</div>
+            <div class="show-topic">🦠 Biology</div>
+            <div class="show-eps">📺 8 Episodes</div>
+          </div>
+        </div>
+        <div class="show-card" onclick="showModal('show')">
+          <div class="show-thumb" style="background:linear-gradient(135deg,#7b2d00,#ff6b00)">⚗️🧪</div>
+          <div class="show-info">
+            <div class="show-name">Bubble Lab</div>
+            <div class="show-topic">🧫 Chemistry</div>
+            <div class="show-eps">📺 10 Episodes</div>
+          </div>
+        </div>
+        <div class="show-card" onclick="showModal('show')">
+          <div class="show-thumb" style="background:linear-gradient(135deg,#003366,#0066cc)">⚡🌊</div>
+          <div class="show-info">
+            <div class="show-name">Force & Fun</div>
+            <div class="show-topic">⚙️ Physics</div>
+            <div class="show-eps">📺 15 Episodes</div>
+          </div>
+        </div>
+        <div class="show-card" onclick="showModal('show')">
+          <div class="show-thumb" style="background:linear-gradient(135deg,#1b4332,#52b788)">🌍💧</div>
+          <div class="show-info">
+            <div class="show-name">Earth Adventures</div>
+            <div class="show-topic">🌎 Earth Science</div>
+            <div class="show-eps">📺 9 Episodes</div>
+          </div>
+        </div>
+        <div class="show-card" onclick="showModal('show')">
+          <div class="show-thumb" style="background:linear-gradient(135deg,#4a0072,#ab47bc)">🌤️🌈</div>
+          <div class="show-info">
+            <div class="show-name">Weather Wizards</div>
+            <div class="show-topic">☁️ Meteorology</div>
+            <div class="show-eps">📺 7 Episodes</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCIENCE TOPICS -->
+    <section class="topics-section">
+      <h2 class="section-title">🔬 Explore Science Topics!</h2>
+      <div class="topics-bubbles">
+        <div class="topic-bubble" onclick="showModal('topic')" style="animation-delay:0s">
+          <span class="bubble-icon">🪐</span>
+          <span class="bubble-label">Space</span>
+        </div>
+        <div class="topic-bubble" onclick="showModal('topic')" style="animation-delay:0.1s">
+          <span class="bubble-icon">🦠</span>
+          <span class="bubble-label">Biology</span>
+        </div>
+        <div class="topic-bubble" onclick="showModal('topic')" style="animation-delay:0.2s">
+          <span class="bubble-icon">⚗️</span>
+          <span class="bubble-label">Chemistry</span>
+        </div>
+        <div class="topic-bubble" onclick="showModal('topic')" style="animation-delay:0.3s">
+          <span class="bubble-icon">⚡</span>
+          <span class="bubble-label">Physics</span>
+        </div>
+        <div class="topic-bubble" onclick="showModal('topic')" style="animation-delay:0.4s">
+          <span class="bubble-icon">🌍</span>
+          <span class="bubble-label">Earth</span>
+        </div>
+        <div class="topic-bubble" onclick="showModal('topic')" style="animation-delay:0.5s">
+          <span class="bubble-icon">🌊</span>
+          <span class="bubble-label">Oceans</span>
+        </div>
+        <div class="topic-bubble" onclick="showModal('topic')" style="animation-delay:0.6s">
+          <span class="bubble-icon">🦕</span>
+          <span class="bubble-label">Dinosaurs</span>
+        </div>
+        <div class="topic-bubble" onclick="showModal('topic')" style="animation-delay:0.7s">
+          <span class="bubble-icon">🌱</span>
+          <span class="bubble-label">Plants</span>
+        </div>
+        <div class="topic-bubble" onclick="showModal('topic')" style="animation-delay:0.8s">
+          <span class="bubble-icon">🧠</span>
+          <span class="bubble-label">Human Body</span>
+        </div>
+        <div class="topic-bubble" onclick="showModal('topic')" style="animation-delay:0.9s">
+          <span class="bubble-icon">🤖</span>
+          <span class="bubble-label">Robots</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- STREAK / PROGRESS -->
+    <section class="progress-section">
+      <h2 class="section-title">🔥 Your Science Streak!</h2>
+      <div class="progress-card">
+        <div class="stat-item">
+          <div class="stat-icon">🔥</div>
+          <div class="stat-val" style="color:var(--orange)">7</div>
+          <div class="stat-label">Day Streak!</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-icon">🎬</div>
+          <div class="stat-val" style="color:var(--purple)">23</div>
+          <div class="stat-label">Episodes Watched</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-icon">⭐</div>
+          <div class="stat-val" style="color:var(--sun)">850</div>
+          <div class="stat-label">Science Points</div>
+        </div>
+      </div>
+      <div style="background:white;border-radius:20px;padding:20px;margin-top:16px;box-shadow:0 8px 25px rgba(0,0,0,0.1);text-align:center;">
+        <p style="font-family:'Fredoka One',cursive;color:var(--dark);margin-bottom:14px;font-size:1.1rem;">This Week's Watch Days 📅</p>
+        <div class="streak-days">
+          <div class="day-dot day-done">M</div>
+          <div class="day-dot day-done">T</div>
+          <div class="day-dot day-done">W</div>
+          <div class="day-dot day-done">T</div>
+          <div class="day-dot day-done">F</div>
+          <div class="day-dot day-today">S</div>
+          <div class="day-dot day-future">S</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GRASS FOOTER -->
+    <div class="grass-footer">
+      <p class="footer-text">🌿 Made with ❤️ for curious kids everywhere 🌿</p>
+    </div>
+
+    <!-- MODAL -->
+    <div class="modal-overlay" id="modal" onclick="closeModal(event)">
+      <div class="modal-box" id="modal-box">
+        <span class="modal-emoji" id="modal-emoji">🎉</span>
+        <h2 class="modal-title" id="modal-title">Yay!</h2>
+        <p class="modal-text" id="modal-text">Something awesome is here!</p>
+        <button class="modal-close" onclick="closeModalBtn()">Awesome! 🚀</button>
       </div>
     </div>
-    <div class="episode-info">
-      <span class="ep-badge">🌟 NEW TODAY</span>
-      <h3 class="ep-title">Why Does Gravity Pull Everything Down?</h3>
-      <p class="ep-desc">Join Cosmo the Rocket Bot as he discovers why apples fall from trees and why we don't float away into space!</p>
-      <div class="ep-meta">
-        <span class="ep-tag">🪐 Space & Physics</span>
-        <span class="ep-tag time">⏱️ 17 mins</span>
-        <span class="ep-tag age">👦 Ages 6-9</span>
-      </div>
-      <button class="watch-btn" onclick="openVideo()">▶️ Watch Now — It's FREE!</button>
-    </div>
-  </div>
-</section>
 
-<!-- CHARACTERS -->
-<section class="chars-section">
-  <h2 class="section-title">👋 Meet Your Science Friends!</h2>
-  <div class="chars-row">
-    <div class="char-card" onclick="showModal('cosmo')">
-      <span class="char-avatar">🤖</span>
-      <div class="char-name">Cosmo</div>
-      <div class="char-role">Space Explorer Bot</div>
-    </div>
-    <div class="char-card" onclick="showModal('luna')">
-      <span class="char-avatar">🦊</span>
-      <div class="char-name">Luna</div>
-      <div class="char-role">Chemistry Wizard</div>
-    </div>
-    <div class="char-card" onclick="showModal('zap')">
-      <span class="char-avatar">⚡</span>
-      <div class="char-name">Zappy</div>
-      <div class="char-role">Electric Explorer</div>
-    </div>
-    <div class="char-card" onclick="showModal('nova')">
-      <span class="char-avatar">🌸</span>
-      <div class="char-name">Nova</div>
-      <div class="char-role">Nature Scientist</div>
-    </div>
-  </div>
-</section>
+    <script>
+      // === STARS ===
+      const starsEl = document.getElementById('stars');
+      for (let i = 0; i < 40; i++) {
+        const s = document.createElement('div');
+        s.className = 'star';
+        s.style.cssText = `
+          left: ${Math.random() * 100}%;
+          top: ${Math.random() * 60}%;
+          width: ${Math.random() * 4 + 2}px;
+          height: ${Math.random() * 4 + 2}px;
+          animation-delay: ${Math.random() * 3}s;
+          animation-duration: ${Math.random() * 2 + 1}s;
+        `;
+        starsEl.appendChild(s);
+      }
 
-<!-- SHOWS GRID -->
-<section class="shows-section">
-  <h2 class="section-title">🎬 All Our Shows</h2>
-  <div class="shows-grid">
-    <div class="show-card" onclick="showModal('show')">
-      <div class="show-thumb" style="background:linear-gradient(135deg,#0f0f3d,#1a1a6e)">🚀🌌</div>
-      <div class="show-info">
-        <div class="show-name">Space Explorers</div>
-        <div class="show-topic">🪐 Astronomy</div>
-        <div class="show-eps">📺 12 Episodes</div>
-      </div>
-    </div>
-    <div class="show-card" onclick="showModal('show')">
-      <div class="show-thumb" style="background:linear-gradient(135deg,#1a472a,#2d6a4f)">🌿🔬</div>
-      <div class="show-info">
-        <div class="show-name">Tiny World</div>
-        <div class="show-topic">🦠 Biology</div>
-        <div class="show-eps">📺 8 Episodes</div>
-      </div>
-    </div>
-    <div class="show-card" onclick="showModal('show')">
-      <div class="show-thumb" style="background:linear-gradient(135deg,#7b2d00,#ff6b00)">⚗️🧪</div>
-      <div class="show-info">
-        <div class="show-name">Bubble Lab</div>
-        <div class="show-topic">🧫 Chemistry</div>
-        <div class="show-eps">📺 10 Episodes</div>
-      </div>
-    </div>
-    <div class="show-card" onclick="showModal('show')">
-      <div class="show-thumb" style="background:linear-gradient(135deg,#003366,#0066cc)">⚡🌊</div>
-      <div class="show-info">
-        <div class="show-name">Force & Fun</div>
-        <div class="show-topic">⚙️ Physics</div>
-        <div class="show-eps">📺 15 Episodes</div>
-      </div>
-    </div>
-    <div class="show-card" onclick="showModal('show')">
-      <div class="show-thumb" style="background:linear-gradient(135deg,#1b4332,#52b788)">🌍💧</div>
-      <div class="show-info">
-        <div class="show-name">Earth Adventures</div>
-        <div class="show-topic">🌎 Earth Science</div>
-        <div class="show-eps">📺 9 Episodes</div>
-      </div>
-    </div>
-    <div class="show-card" onclick="showModal('show')">
-      <div class="show-thumb" style="background:linear-gradient(135deg,#4a0072,#ab47bc)">🌤️🌈</div>
-      <div class="show-info">
-        <div class="show-name">Weather Wizards</div>
-        <div class="show-topic">☁️ Meteorology</div>
-        <div class="show-eps">📺 7 Episodes</div>
-      </div>
-    </div>
-  </div>
-</section>
+      // === CLOUDS ===
+      const cloudsEl = document.getElementById('clouds');
+      const cloudData = [
+        { top: 10, w: 120, h: 50, dur: 25, delay: 0 },
+        { top: 40, w: 90, h: 40, dur: 35, delay: -10 },
+        { top: 5, w: 150, h: 60, dur: 20, delay: -5 },
+        { top: 60, w: 80, h: 35, dur: 45, delay: -20 },
+      ];
+      cloudData.forEach(c => {
+        const el = document.createElement('div');
+        el.className = 'cloud';
+        el.style.cssText = `
+          top: ${c.top}px;
+          width: ${c.w}px;
+          height: ${c.h}px;
+          animation-duration: ${c.dur}s;
+          animation-delay: ${c.delay}s;
+        `;
+        cloudsEl.appendChild(el);
+      });
 
-<!-- SCIENCE TOPICS -->
-<section class="topics-section">
-  <h2 class="section-title">🔬 Explore Science Topics!</h2>
-  <div class="topics-bubbles">
-    <div class="topic-bubble" onclick="showModal('topic')" style="animation-delay:0s">
-      <span class="bubble-icon">🪐</span>
-      <span class="bubble-label">Space</span>
-    </div>
-    <div class="topic-bubble" onclick="showModal('topic')" style="animation-delay:0.1s">
-      <span class="bubble-icon">🦠</span>
-      <span class="bubble-label">Biology</span>
-    </div>
-    <div class="topic-bubble" onclick="showModal('topic')" style="animation-delay:0.2s">
-      <span class="bubble-icon">⚗️</span>
-      <span class="bubble-label">Chemistry</span>
-    </div>
-    <div class="topic-bubble" onclick="showModal('topic')" style="animation-delay:0.3s">
-      <span class="bubble-icon">⚡</span>
-      <span class="bubble-label">Physics</span>
-    </div>
-    <div class="topic-bubble" onclick="showModal('topic')" style="animation-delay:0.4s">
-      <span class="bubble-icon">🌍</span>
-      <span class="bubble-label">Earth</span>
-    </div>
-    <div class="topic-bubble" onclick="showModal('topic')" style="animation-delay:0.5s">
-      <span class="bubble-icon">🌊</span>
-      <span class="bubble-label">Oceans</span>
-    </div>
-    <div class="topic-bubble" onclick="showModal('topic')" style="animation-delay:0.6s">
-      <span class="bubble-icon">🦕</span>
-      <span class="bubble-label">Dinosaurs</span>
-    </div>
-    <div class="topic-bubble" onclick="showModal('topic')" style="animation-delay:0.7s">
-      <span class="bubble-icon">🌱</span>
-      <span class="bubble-label">Plants</span>
-    </div>
-    <div class="topic-bubble" onclick="showModal('topic')" style="animation-delay:0.8s">
-      <span class="bubble-icon">🧠</span>
-      <span class="bubble-label">Human Body</span>
-    </div>
-    <div class="topic-bubble" onclick="showModal('topic')" style="animation-delay:0.9s">
-      <span class="bubble-icon">🤖</span>
-      <span class="bubble-label">Robots</span>
-    </div>
-  </div>
-</section>
+      // === MINI STARS IN EPISODE THUMB ===
+      const miniStarsEl = document.getElementById('mini-stars');
+      const starChars = ['✦', '✧', '·', '★', '•'];
+      for (let i = 0; i < 20; i++) {
+        const s = document.createElement('div');
+        s.className = 'scene-star';
+        s.textContent = starChars[Math.floor(Math.random() * starChars.length)];
+        s.style.cssText = `
+          left: ${Math.random() * 100}%;
+          top: ${Math.random() * 100}%;
+          animation-delay: ${Math.random() * 2}s;
+          font-size: ${Math.random() * 10 + 6}px;
+        `;
+        miniStarsEl.appendChild(s);
+      }
 
-<!-- STREAK / PROGRESS -->
-<section class="progress-section">
-  <h2 class="section-title">🔥 Your Science Streak!</h2>
-  <div class="progress-card">
-    <div class="stat-item">
-      <div class="stat-icon">🔥</div>
-      <div class="stat-val" style="color:var(--orange)">7</div>
-      <div class="stat-label">Day Streak!</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-icon">🎬</div>
-      <div class="stat-val" style="color:var(--purple)">23</div>
-      <div class="stat-label">Episodes Watched</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-icon">⭐</div>
-      <div class="stat-val" style="color:var(--sun)">850</div>
-      <div class="stat-label">Science Points</div>
-    </div>
-  </div>
-  <div style="background:white;border-radius:20px;padding:20px;margin-top:16px;box-shadow:0 8px 25px rgba(0,0,0,0.1);text-align:center;">
-    <p style="font-family:'Fredoka One',cursive;color:var(--dark);margin-bottom:14px;font-size:1.1rem;">This Week's Watch Days 📅</p>
-    <div class="streak-days">
-      <div class="day-dot day-done">M</div>
-      <div class="day-dot day-done">T</div>
-      <div class="day-dot day-done">W</div>
-      <div class="day-dot day-done">T</div>
-      <div class="day-dot day-done">F</div>
-      <div class="day-dot day-today">S</div>
-      <div class="day-dot day-future">S</div>
-    </div>
-  </div>
-</section>
+      // === MODAL DATA ===
+      const modalContent = {
+        video: { emoji: '🎬', title: 'Get Ready to Learn!', text: "Today's episode: 'Why Does Gravity Pull Everything Down?' is loading! Cosmo the Robot will take you on an amazing space adventure where you'll discover the secrets of gravity! 🚀" },
+        game: { emoji: '🧩', title: 'Science Quiz Time!', text: "Test your science superpowers! Complete 5 fun questions about what you've learned and earn bonus Science Points! Are you ready, Scientist? 🌟" },
+        profile: { emoji: '🏆', title: 'Your Badges!', text: "You've earned: ⭐ Space Explorer, 🦠 Biology Buddy, ⚗️ Chemistry Champ! Keep watching to unlock more awesome badges!" },
+        cosmo: { emoji: '🤖', title: 'Meet Cosmo!', text: "Hi! I'm Cosmo, your Space Explorer Robot! I LOVE rockets, planets, and all things in space. Together we'll explore the universe and discover amazing science secrets! 🌌" },
+        luna: { emoji: '🦊', title: 'Meet Luna!', text: "Hey there! I'm Luna the Chemistry Fox! I mix colourful potions and make crazy bubbles to show you how atoms and molecules work. Science is magical! ✨" },
+        zap: { emoji: '⚡', title: 'Meet Zappy!', text: "ZAP! I'm Zappy the Electric Explorer! I'll show you how electricity works, why lightning flashes, and how your TV turns on. Electrifying stuff! ⚡" },
+        nova: { emoji: '🌸', title: 'Meet Nova!', text: "Hello, nature friend! I'm Nova and I study all the beautiful plants and animals on Earth. Every day we discover something new and wonderful together! 🌿" },
+        show: { emoji: '🎉', title: 'Coming Soon!', text: "This amazing show is loading up for you! New episodes come out every week. Make sure you watch every day to not miss anything! Keep your streak going! 🔥" },
+        topic: { emoji: '🔬', title: 'Explore This Topic!', text: "Awesome choice! We have tons of cool cartoons about this science topic. Watch them all to become a super scientist! You're doing great! 💪" },
+      };
 
-<!-- GRASS FOOTER -->
-<div class="grass-footer">
-  <p class="footer-text">🌿 Made with ❤️ for curious kids everywhere 🌿</p>
-</div>
+      function openVideo() { showModal('video'); launchConfetti(); }
 
-<!-- MODAL -->
-<div class="modal-overlay" id="modal" onclick="closeModal(event)">
-  <div class="modal-box" id="modal-box">
-    <span class="modal-emoji" id="modal-emoji">🎉</span>
-    <h2 class="modal-title" id="modal-title">Yay!</h2>
-    <p class="modal-text" id="modal-text">Something awesome is here!</p>
-    <button class="modal-close" onclick="closeModalBtn()">Awesome! 🚀</button>
-  </div>
-</div>
+      function showModal(type) {
+        const data = modalContent[type] || modalContent.video;
+        document.getElementById('modal-emoji').textContent = data.emoji;
+        document.getElementById('modal-title').textContent = data.title;
+        document.getElementById('modal-text').textContent = data.text;
+        document.getElementById('modal').classList.add('active');
+      }
 
-<script>
-  // === STARS ===
-  const starsEl = document.getElementById('stars');
-  for (let i = 0; i < 40; i++) {
-    const s = document.createElement('div');
-    s.className = 'star';
-    s.style.cssText = `
-      left: ${Math.random() * 100}%;
-      top: ${Math.random() * 60}%;
-      width: ${Math.random() * 4 + 2}px;
-      height: ${Math.random() * 4 + 2}px;
-      animation-delay: ${Math.random() * 3}s;
-      animation-duration: ${Math.random() * 2 + 1}s;
-    `;
-    starsEl.appendChild(s);
-  }
+      function closeModal(e) {
+        if (e.target === document.getElementById('modal')) closeModalBtn();
+      }
 
-  // === CLOUDS ===
-  const cloudsEl = document.getElementById('clouds');
-  const cloudData = [
-    { top: 10, w: 120, h: 50, dur: 25, delay: 0 },
-    { top: 40, w: 90, h: 40, dur: 35, delay: -10 },
-    { top: 5, w: 150, h: 60, dur: 20, delay: -5 },
-    { top: 60, w: 80, h: 35, dur: 45, delay: -20 },
-  ];
-  cloudData.forEach(c => {
-    const el = document.createElement('div');
-    el.className = 'cloud';
-    el.style.cssText = `
-      top: ${c.top}px;
-      width: ${c.w}px;
-      height: ${c.h}px;
-      animation-duration: ${c.dur}s;
-      animation-delay: ${c.delay}s;
-    `;
-    cloudsEl.appendChild(el);
-  });
+      function closeModalBtn() {
+        document.getElementById('modal').classList.remove('active');
+      }
 
-  // === MINI STARS IN EPISODE THUMB ===
-  const miniStarsEl = document.getElementById('mini-stars');
-  const starChars = ['✦', '✧', '·', '★', '•'];
-  for (let i = 0; i < 20; i++) {
-    const s = document.createElement('div');
-    s.className = 'scene-star';
-    s.textContent = starChars[Math.floor(Math.random() * starChars.length)];
-    s.style.cssText = `
-      left: ${Math.random() * 100}%;
-      top: ${Math.random() * 100}%;
-      animation-delay: ${Math.random() * 2}s;
-      font-size: ${Math.random() * 10 + 6}px;
-    `;
-    miniStarsEl.appendChild(s);
-  }
+      // === CONFETTI ===
+      function launchConfetti() {
+        const colors = ['#FF6B9D', '#FFD93D', '#00C8FF', '#4CAF50', '#9B59B6', '#FF8C42'];
+        for (let i = 0; i < 60; i++) {
+          const c = document.createElement('div');
+          c.className = 'confetti-piece';
+          c.style.cssText = `
+            left: ${Math.random() * 100}vw;
+            background: ${colors[Math.floor(Math.random() * colors.length)]};
+            width: ${Math.random() * 12 + 6}px;
+            height: ${Math.random() * 12 + 6}px;
+            animation-duration: ${Math.random() * 2 + 1.5}s;
+            animation-delay: ${Math.random() * 0.5}s;
+            border-radius: ${Math.random() > 0.5 ? '50%' : '2px'};
+          `;
+          document.body.appendChild(c);
+          setTimeout(() => c.remove(), 3500);
+        }
+      }
 
-  // === MODAL DATA ===
-  const modalContent = {
-    video: { emoji: '🎬', title: 'Get Ready to Learn!', text: "Today's episode: 'Why Does Gravity Pull Everything Down?' is loading! Cosmo the Robot will take you on an amazing space adventure where you'll discover the secrets of gravity! 🚀" },
-    game: { emoji: '🧩', title: 'Science Quiz Time!', text: "Test your science superpowers! Complete 5 fun questions about what you've learned and earn bonus Science Points! Are you ready, Scientist? 🌟" },
-    profile: { emoji: '🏆', title: 'Your Badges!', text: "You've earned: ⭐ Space Explorer, 🦠 Biology Buddy, ⚗️ Chemistry Champ! Keep watching to unlock more awesome badges!" },
-    cosmo: { emoji: '🤖', title: 'Meet Cosmo!', text: "Hi! I'm Cosmo, your Space Explorer Robot! I LOVE rockets, planets, and all things in space. Together we'll explore the universe and discover amazing science secrets! 🌌" },
-    luna: { emoji: '🦊', title: 'Meet Luna!', text: "Hey there! I'm Luna the Chemistry Fox! I mix colourful potions and make crazy bubbles to show you how atoms and molecules work. Science is magical! ✨" },
-    zap: { emoji: '⚡', title: 'Meet Zappy!', text: "ZAP! I'm Zappy the Electric Explorer! I'll show you how electricity works, why lightning flashes, and how your TV turns on. Electrifying stuff! ⚡" },
-    nova: { emoji: '🌸', title: 'Meet Nova!', text: "Hello, nature friend! I'm Nova and I study all the beautiful plants and animals on Earth. Every day we discover something new and wonderful together! 🌿" },
-    show: { emoji: '🎉', title: 'Coming Soon!', text: "This amazing show is loading up for you! New episodes come out every week. Make sure you watch every day to not miss anything! Keep your streak going! 🔥" },
-    topic: { emoji: '🔬', title: 'Explore This Topic!', text: "Awesome choice! We have tons of cool cartoons about this science topic. Watch them all to become a super scientist! You're doing great! 💪" },
-  };
+      // Launch confetti after short delay for welcome feel
+      setTimeout(launchConfetti, 3000);
+    </script>
 
-  function openVideo() { showModal('video'); launchConfetti(); }
-
-  function showModal(type) {
-    const data = modalContent[type] || modalContent.video;
-    document.getElementById('modal-emoji').textContent = data.emoji;
-    document.getElementById('modal-title').textContent = data.title;
-    document.getElementById('modal-text').textContent = data.text;
-    document.getElementById('modal').classList.add('active');
-  }
-
-  function closeModal(e) {
-    if (e.target === document.getElementById('modal')) closeModalBtn();
-  }
-
-  function closeModalBtn() {
-    document.getElementById('modal').classList.remove('active');
-  }
-
-  // === CONFETTI ===
-  function launchConfetti() {
-    const colors = ['#FF6B9D', '#FFD93D', '#00C8FF', '#4CAF50', '#9B59B6', '#FF8C42'];
-    for (let i = 0; i < 60; i++) {
-      const c = document.createElement('div');
-      c.className = 'confetti-piece';
-      c.style.cssText = `
-        left: ${Math.random() * 100}vw;
-        background: ${colors[Math.floor(Math.random() * colors.length)]};
-        width: ${Math.random() * 12 + 6}px;
-        height: ${Math.random() * 12 + 6}px;
-        animation-duration: ${Math.random() * 2 + 1.5}s;
-        animation-delay: ${Math.random() * 0.5}s;
-        border-radius: ${Math.random() > 0.5 ? '50%' : '2px'};
-      `;
-      document.body.appendChild(c);
-      setTimeout(() => c.remove(), 3500);
-    }
-  }
-
-  // Launch confetti after short delay for welcome feel
-  setTimeout(launchConfetti, 3000);
-</script>
-
-</body>
-</html>
+    </body>
+    </html>
