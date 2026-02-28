@@ -645,14 +645,13 @@
     .progress-card { grid-template-columns: 1fr; }
   }
 
-  .stat-item {}
+ .stat-item {}
 
-  .stat-val {
-    font-family: 'Fredoka One', cursive;
-    font-size: 3rem;
-    line-height: 1;
-  }
-
+.stat-val {
+  font-family: 'Fredoka One', cursive;
+  font-size: 3rem;
+  line-height: 1;   /* you had this on the next line in the full file */
+}                   /* ✅ closing brace added */
   .stat-label {
     font-size: 0.9rem;
     font-weight: 700;
